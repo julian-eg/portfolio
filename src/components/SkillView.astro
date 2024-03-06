@@ -1,0 +1,64 @@
+---
+import IconNext from "../assets/icons/IconNext.astro";
+import IconReact from "../assets/icons/IconReact.astro";
+import IconAstro from "../assets/icons/IconAstro.astro";
+import IconJavascript from "../assets/icons/IconJavascript.astro";
+import IconTypescript from "../assets/icons/IconTypescript.astro";
+import IconVue from "../assets/icons/IconVue.astro";
+import IconTailwind from "../assets/icons/IconTailwind.astro";
+import IconPrisma from "../assets/icons/IconPrisma.astro";
+
+const Skills = [
+  {
+    title: "Javascript",
+    icon: IconJavascript,
+    class: "text-[#f0db4f] border-[#f0db4f]/30 border-2 bg-[#f0db4f]/10"
+  },
+  {
+    title: "Typescript",
+    icon: IconTypescript,
+    class: "text-[#3178C6] border-[#3178C6]/30 border-2 bg-[#3178C6]/10"
+  },
+  {
+    title: "React",
+    icon: IconReact,
+    class: "text-[#61dbfb] border-[#61dbfb]/30 border-2 bg-[#61dbfb]/10"
+  },
+  {
+    title: "NextJS",
+    icon: IconNext,
+    class: "text-zinc-400 border-zinc-600/30 border-2 bg-zinc-600/10"
+  },
+  {
+    title: "Astro",
+    icon: IconAstro,
+    class: "text-[#FF5D01] border-[#FF5D01]/30 border-2 bg-[#FF5D01]/10"
+  },
+  {
+    title: "VueJS",
+    icon: IconVue,
+    class: "text-[#41B883] border-[#41B883]/30 border-2 bg-[#41B883]/10"
+  },
+  {
+    title: "Tailwind",
+    icon: IconTailwind,
+    class: "text-[#2298BD] border-[#2298BD]/30 border-2 bg-[#2298BD]/10"
+  },
+  {
+    title: "Prisma",
+    icon: IconPrisma,
+    class: "text-zinc-400 border-zinc-600/30 border-2 bg-zinc-600/10"
+  },
+];
+---
+
+<ul class="px-10 grid grid-cols-[repeat(auto-fill,minmax(94px,1fr))] gap-5 my-6 bg-neko-950">
+  {
+    Skills.map((neko) => (
+      <li class={`text-lg flex flex-col justify-between py-1.5 rounded-md w-[5.9rem] h-20 items-center ${neko.class}`}>
+        <neko.icon size={36} />
+        <span class="text-gray-300 text-sm">{neko.title}</span>
+      </li>
+    ))
+  }
+</ul>

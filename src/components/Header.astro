@@ -1,0 +1,143 @@
+---
+import IconMenu from "../assets/icons/IconMenu.astro";
+import IconTwitter from "../assets/icons/IconTwitter.astro";
+import IconLinkedIn from "../assets/icons/IconLinkedIn.astro";
+
+const { pathname } = Astro.url;
+---
+
+<header
+  class="h-16 px-10 max-w-5xl text-sm mx-auto flex items-center justify-between"
+>
+  <a class="border-2 px-5 border-neko-600 rounded-full py-2.5" href="/"
+    >julian.eg@outlook.com</a
+  >
+  <button
+    id="menu"
+    class="w-16 flex z-40 items-center justify-center h-16 scale-0 rounded-full fixed top-5 right-5 transition-colors ease-in-out bg-neko-950 border-[2px] border-neko-800/70"
+  >
+    <IconMenu size={30} />
+  </button>
+  <nav>
+    <ul class="flex gap-4">
+      <li><a href="/project">Proyectos</a></li>
+      <li><a href="/about">Sobre Mi</a></li>
+      <li><a href="/contact">Contacto</a></li>
+    </ul>
+  </nav>
+  <div
+    id="aside-bg"
+    class="hidden bg-black bg-opacity-40 top-0 h-screen left-0 w-full fixed z-0"
+  >
+  </div>
+  <nav
+    id="slide"
+    class="max-w-[500px] w-full hidden h-screen items-center fixed z-30 right-0 top-0 overflow-hidden"
+  >
+    <div
+      id="slide-text"
+      class="translate-x-[500px] p-14 h-full w-full justify-between transition-all absolute z-40 flex-col flex delay-100 duration-300"
+    >
+      <div class="w-full flex flex-col">
+        <h1 class="text-xl text-gray-400">Julián Esparza</h1>
+        <span
+          class="border-b mb-6 py-3 border-gray-500/50 w-full uppercase text-gray-500"
+          >Menu</span
+        >
+        <ul class="text-5xl gap-6 flex flex-col h-full text-gray-300">
+          <li class="hover:text-white cursor-pointer">
+            <a href="/">Inicio</a>
+          </li>
+          <li class="hover:text-white cursor-pointer">
+            <a href="/project">Proyectos</a>
+          </li>
+          <li class="hover:text-white cursor-pointer">
+            <a href="/about">Sobre Mi</a>
+          </li>
+          <li class="hover:text-white cursor-pointer">
+            <a href="/contact">Contacto</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col">
+        <span class="py-3 w-full uppercase text-gray-500">Redes Sociales</span>
+        <div class="border-t flex gap-6 border-gray-500/70 pt-6 items-center">
+          <IconTwitter size={48} />
+          <IconLinkedIn size={48} />
+        </div>
+      </div>
+    </div>
+    <div
+      id="slide-content"
+      class="flex transition-transform will-change-transform -right-full w-[500px] absolute ease-in-out duration-700 h-screen [transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)] bg-[#141820]"
+    >
+    </div>
+  </nav>
+</header>
+
+<style>
+  #menu {
+    animation: neko-show 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes neko-show {
+    to {
+      @apply scale-100;
+    }
+  }
+</style>
+
+<script>
+  function onButtonClick() {
+    const neko = document.getElementById("menu") as HTMLElement;
+
+    neko.addEventListener("click", (ev) => {
+      const element = document.getElementById("slide");
+      const content = document.getElementById("slide-content");
+      const text = document.getElementById("slide-text");
+      const menu = document.getElementById("menu");
+      const bg = document.getElementById("aside-bg");
+
+      if (element?.classList.contains("hidden")) {
+        element?.classList.remove("hidden");
+        element?.classList.add("flex");
+        document.body.classList.add("overflow-hidden");
+        setTimeout(() => {
+          content?.classList.remove("-right-full");
+          menu?.classList.remove("bg-neko-950");
+          menu?.classList.remove("border-[2px]");
+          content?.classList.remove(
+            "[transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)]"
+          );
+          bg?.classList.remove("hidden");
+        }, 100);
+        setTimeout(() => {
+          text?.classList.remove("translate-x-[500px]");
+        }, 350);
+      } else {
+        text?.classList.add("translate-x-[500px]");
+        setTimeout(() => {
+          document.body.classList.remove("overflow-hidden");
+          bg?.classList.add("hidden");
+          content?.classList.add(
+            "[transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)]"
+          );
+        }, 50);
+
+        setTimeout(() => {
+          menu?.classList.add("bg-neko-950");
+          menu?.classList.add("border-[2px]");
+          element?.classList.add("hidden");
+        }, 350);
+        ev.preventDefault();
+        return false;
+      }
+    });
+  }
+
+  onButtonClick();
+
+  document.addEventListener("astro:after-swap", onButtonClick);
+</script>

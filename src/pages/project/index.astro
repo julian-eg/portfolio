@@ -1,0 +1,129 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import IconPlus from "../../assets/icons/IconPlus.astro";
+
+const posts = (await getCollection("project")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<MainLayout
+  title="Proyectos - Julián Esparza"
+  desc="Julián Esparza Web Developer"
+>
+  <section>
+    <p class="text-6xl my-40 px-10 text-neko-100 max-w-2xl">
+      Creando soluciones y volviendo <span class="text-yellow-500"
+        >realidad</span
+      > tus ideas
+    </p>
+    <ul class="mt-8 mb-16 w-full">
+      {
+        posts.map((post) => (
+          <li class="py-6 px-9 bg-neko-950 border-y-neko-800/70 border-b-2 first:border-t-2 expand overflow-hidden transition-all">
+            <div class="flex justify-between">
+              <div class="">
+                <a href={`/project/${post.slug}/`}>
+                  <h3 class="font-bold text-7xl">{post.data.title}</h3>
+                </a>
+                <span class="mx-1 text-xl text-pink-600">
+                  {post.data.develop}
+                </span>
+              </div>
+
+              <button class="expand-button">
+                <IconPlus
+                  className="expand-svg transition-all ease-in-out duration-300"
+                  size={40}
+                />
+              </button>
+            </div>
+            <div class="expand-content hidden max-h-0 transition-all duration-300 ease-in-out ">
+              <div class="mt-1 max-w-full transition-[height] flex gap-6">
+                <img
+                  class="h-auto max-w-80 w-full aspect-video"
+                  loading="lazy"
+                  src={post.data.heroImage}
+                />
+                <div class="flex min-h-48 justify-between flex-col w-full">
+                  <div class="">
+                    <p class="">{post.data.description}</p>
+                    <div class="flex gap-2 text-sm">
+                      {post.data.tags?.map((tag) => (
+                        <span class="px-2.5 rounded-md flex border border-zinc-800 text-gray-50 py-1">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                    <a
+                      class="mt-4 self-end px-2 py-1 hover:text-violet-200/90 hover:border-violet-600/60 border border-transparent shadow-sm hover:shadow-card transition-all ease-in-out hover:shadow-violet-900/30 text-violet-400 bg-violet-900/20 rounded-md"
+                      href={post.data.url.path}
+                    >
+                      {post.data.url.name}
+                    </a>
+                    <a class="mt-4 self-end" href={`/project/${post.slug}/`}>
+                      Ver Proyecto
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <script>
+    function expand() {
+      const menu = document.querySelectorAll(
+        ".expand"
+      ) as NodeListOf<HTMLElement>;
+
+      menu.forEach((neko) => {
+        const expandButton = neko.querySelector(
+          ".expand-button"
+        ) as HTMLElement;
+        const expandContent = neko.querySelector(
+          ".expand-content"
+        ) as HTMLElement;
+        const expandSVG = neko.querySelector(".expand-svg") as HTMLElement;
+
+        if (expandButton && expandContent && expandSVG) {
+          expandButton.addEventListener("click", (ev) => {
+            if (!neko.classList.contains("active")) {
+              neko.classList.add("active");
+              expandButton.setAttribute("aria-expanded", "true");
+              expandContent.classList.remove("hidden");
+              expandContent.style.maxHeight = expandContent.scrollHeight + "px";
+              expandSVG.classList.add("rotate-45");
+            } else {
+              neko.classList.remove("active");
+              expandButton.setAttribute("aria-expanded", "false");
+
+              expandContent.style.maxHeight = "0px";
+              expandSVG.classList.remove("rotate-45");
+
+              setTimeout(() => {
+                expandContent.classList.add("hidden");
+              }, 300);
+              ev.preventDefault();
+              return false;
+            }
+          });
+        }
+      });
+    }
+
+    expand();
+
+    document.addEventListener("astro:after-swap", expand);
+  </script>
+  <style>
+    body {
+      @apply bg-neko-950;
+    }
+  </style>
+</MainLayout>

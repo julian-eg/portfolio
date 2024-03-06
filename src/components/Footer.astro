@@ -1,0 +1,104 @@
+---
+import IconChevronUp from "../assets/icons/IconChevronUp.astro";
+---
+
+<footer class="fixed bottom-0 w-full  flex justify-center">
+  <nav
+    id="aside"
+    class=" flex-col hover:-translate-y-3 group flex gap-8 absolute -bottom-[28rem] w-full max-w-[550px] transition-all duration-500 ease-in-out rounded-t-xl border-2 border-neko-800/70 bg-neko-950 h-96"
+  >
+    <button id="aside-button" class="flex px-4 justify-between border-b border-neko-800/70 h-14 items-center cursor-pointer">
+      <span
+        id="aside-text"
+        class="text-xl font-bold group-hover:bg-rain transition-colors ease-in rain bg-clip-text bg-neko-200 text-transparent"
+        >Contactame</span
+      >
+      <svg
+        id="aside-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        class={"transition-all ease-in-out duration-300 group-hover:animate-bounce"}
+        width={"24"}
+        height={"24"}
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M6 15l6 -6l6 6"></path></svg
+      >
+    </button>
+    <div class="flex px-4 flex-col gap-8 mb-8 items-center">
+      <span class="text-5xl max-w-xs text-center font-bold text-neko-200">Trabajemos juntos</span>
+      <a href="mailto:julian.eg@outlook.com z-20" class=""
+        >julian.eg@outlook.com</a
+      >
+      <a
+        class="relative z-20 group h-12 w-60 overflow-hidden rounded-md flex items-center justify-center"
+        href="/project"
+        ><div
+          class="absolute w-64 h-64 group-hover:animate-[spin_2s_linear_infinite] bg-neko-700/80 transition-all ease-in-out duration-500 group-hover:bg-gradient-to-br from-sky-500 via-fuchsia-500 to-red-500"
+        >
+        </div><span
+          class="relative h-[calc(100%-3px)] w-[calc(100%-3px)] flex justify-center items-center rounded-md bg-neko-950"
+          >Enviar mensaje</span
+        ></a
+      >
+    </div>
+  </nav>
+</footer>
+
+<style>
+  #aside {
+    animation: neko-up 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 20 100px;
+  }
+
+  @keyframes neko-up {
+    to {
+      @apply -bottom-[20.5rem];
+    }
+  }
+</style>
+
+<script>
+  function onButtonClick() {
+    const neko = document.getElementById("aside-button") as HTMLElement;
+
+    neko.addEventListener("click", (ev) => {
+      const aside = document.getElementById("aside") as HTMLElement;
+      const asideSvg = document.getElementById("aside-svg") as HTMLElement;
+      const asideText = document.getElementById("aside-text") as HTMLElement;
+
+      if (!aside.classList.contains("-translate-y-80")) {
+        document.body.classList.add("overflow-hidden");
+        aside.classList.remove("hover:-translate-y-3");
+        aside.classList.add("-translate-y-80");
+        aside.classList.remove("group");
+        asideText.classList.replace("group-hover:bg-rain", "bg-rain");
+        setTimeout(() => {
+          asideSvg.classList.add("rotate-180");
+        }, 50);
+      } else {
+        aside.classList.remove("-translate-y-80");
+        document.body.classList.remove("overflow-hidden");
+        setTimeout(() => {
+          aside.classList.add("group");
+          asideSvg.classList.remove("rotate-180");
+        }, 200);
+        setTimeout(() => {
+          asideText.classList.replace("bg-rain", "group-hover:bg-rain");
+          aside.classList.add("hover:-translate-y-3");
+        }, 600);
+      }
+      ev.preventDefault();
+      return false;
+    });
+  }
+
+  onButtonClick();
+
+  document.addEventListener("astro:after-swap", onButtonClick);
+</script>

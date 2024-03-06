@@ -1,0 +1,168 @@
+:root {
+  --gradient-rain: linear-gradient(
+    60deg,
+    #5f86f2,
+    #a65ff2,
+    #f25fd0,
+    #f25f61,
+    #f2cb5f,
+    #abf25f,
+    #5ff281,
+    #5ff2f0
+  );
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("/fonts/OpenSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-sky-500 via-pink-500 to-rose-500 bg-clip-text;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  @apply break-words text-lg text-neko-200/80 bg-neko-950 
+}
+main {
+  @apply max-w-5xl mx-auto;
+}
+
+section {
+  @apply min-h-content flex flex-col justify-center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-neko-50;
+}
+h1 {
+  @apply text-6xl font-bold;
+}
+h2 {
+  @apply text-4xl font-semibold;
+}
+h3 {
+  @apply text-3xl font-medium;
+}
+h4 {
+  @apply text-2xl font-medium;
+}
+h5 {
+  @apply text-xl font-medium;
+}
+strong,
+b {
+  font-weight: 700;
+}
+
+a:hover {
+  @apply text-neko-50;
+}
+
+p {
+  margin-bottom: 0.4em;
+}
+.prose p {
+  margin-bottom: 2em;
+}
+textarea {
+  width: 100%;
+  font-size: 16px;
+}
+input {
+  font-size: 16px;
+}
+table {
+  width: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+code {
+  padding: 2px 5px;
+  background-color: rgb(var(--gray-light));
+  border-radius: 2px;
+}
+pre {
+  padding: 1.5em;
+  border-radius: 8px;
+}
+pre > code {
+  all: unset;
+}
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0 0 0 20px;
+  margin: 0px;
+  font-size: 1.333em;
+}
+hr {
+  border: none;
+  border-top: 1px solid rgb(var(--gray-light));
+}
+@media (max-width: 720px) {
+  body {
+    font-size: 18px;
+  }
+  main {
+    padding: 4px;
+  }
+}
+
+.rain {
+  background-size: 300% 300%;
+  animation: animatedText 3.5s infinite;
+}
+
+.sr-only {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px 1px 1px 1px);
+  /* maybe deprecated but we need to support legacy browsers */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* modern browsers, clip-path works inwards from each corner */
+  clip-path: inset(50%);
+  /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+@keyframes animatedText {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}

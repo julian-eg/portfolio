@@ -1,0 +1,26 @@
+---
+const { as = "Link" || "Button", href, hasIcon } = Astro.props;
+---
+
+{
+  as == "Link" ? (
+    <a
+      href={href}
+      class={`${
+        hasIcon ? "flex gap-2" : ""
+      } rounded-full border-gray-700/60 bg-zinc-900/40 border-solid border-[1.5px] transition-all px-5 py-2.5 
+  hover:scale-105 hover:text-white text-gray-300`}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      class={`${
+        hasIcon ? "flex gap-2" : ""
+      } rounded-full border-gray-700/60 bg-zinc-900/40 border-solid border-[1.5px] transition-all px-5 py-2.5 
+  hover:scale-105 hover:text-white text-gray-300`}
+    >
+      <slot />
+    </button>
+  )
+}

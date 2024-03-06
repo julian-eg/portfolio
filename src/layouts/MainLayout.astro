@@ -1,0 +1,55 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+const { title, desc } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <BaseHead title={title} description={desc} main />
+  </head>
+  <body>
+    <!-- <div
+      class="pattern fixed max-w-[90%] top-0 inset-x-0 mx-auto -z-10 h-full w-full"
+    >
+    </div> -->
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <style is:global>
+      html {
+        color-scheme: dark;
+        scroll-behavior: smooth;
+      }
+
+      .pattern {
+        content: "";
+        background: transparent;
+        background-image: radial-gradient(#41516b 1.5px, transparent 3px),
+          radial-gradient(#31415b20 4px, transparent 7px);
+        background-size: 150px 150px;
+        background-position:
+          0 0,
+          30px 30px;
+        background-repeat: repeat;
+        animation: animateBg 200s linear infinite;
+      }
+
+      @keyframes animateBg {
+        0% {
+          background-position: 50% 0%;
+        }
+        50% {
+          background-position: 50% -100%;
+        }
+        to {
+          background-position: 50% 0%;
+        }
+      }
+    </style>
+  </body>
+</html>
