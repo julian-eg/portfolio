@@ -1,0 +1,137 @@
+---
+import IconAstro from "../../assets/icons/IconAstro.astro";
+import IconCode from "../../assets/icons/IconCode.astro";
+import IconJavascript from "../../assets/icons/IconJavascript.astro";
+import IconNext from "../../assets/icons/IconNext.astro";
+import IconPrisma from "../../assets/icons/IconPrisma.astro";
+import IconReact from "../../assets/icons/IconReact.astro";
+import IconTailwind from "../../assets/icons/IconTailwind.astro";
+import IconTypescript from "../../assets/icons/IconTypescript.astro";
+import IconVue from "../../assets/icons/IconVue.astro";
+import LineCurve from '../../assets/lines/LineCurve.astro'
+import Button from "../Button.astro";
+
+const ICONS = [IconJavascript, IconNext, IconReact, IconAstro, IconVue, IconTypescript, IconPrisma, IconTailwind];
+---
+
+<section class="flex flex-row justify-between px-10">
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="">
+      <p class="max-w-xl leading-tight font-bold text-5xl text-neko-100">Creando soluciones para entrar en el mundo digital</p>
+    </div>
+    <div class="mb-16 pb-2">
+      <Button as="Link" href="/contact">Contactame</Button>
+    </div>
+  </div>
+  <div class="flex flex-1 flex-col gap-24 items-end">
+    <p class="max-w-80 text-pretty">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo fuga
+      labore aut eum eo
+    </p>
+    <div class="h-80 w-80 aspect-square relative">
+      <div
+        class="h-full w-full top-0 absolute rounded-full border border-neko-900/80"
+      >
+      </div>
+      <div
+        class="h-24 w-24 absolute flex items-center justify-center rounded-full inset-0 m-auto bg-conic"
+      >
+        <div
+          class="h-[calc(100%-6px)] w-[calc(100%-6px)] flex items-center justify-center rounded-full bg-black"
+        >
+          <IconCode size={32} />
+        </div>
+      </div>
+      <div class="hidden absolute top-1/2 right-full w-[32.625rem] -mt-1 mr-10 pointer-events-none xl:block">
+        <LineCurve/>
+      </div>
+      <ul>
+        {
+          ICONS.map((ICON, index) => (
+            <li
+              class={`absolute top-0 left-1/2 h-1/2 -ml-[1.6rem] origin-bottom rotate-${
+                index * 45
+              }`}
+            >
+              <div
+                class={`relative -top-[1.6rem] flex w-14  items-center h-14 bg-neko-950  rounded-full -rotate-${
+                  index * 45
+                }`}
+              >
+                <div class="w-full h-full flex justify-center items-center rounded-full bg-neko-925/40 border border-neko-900/80">
+                <ICON size={28} />
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rotate-45 {
+    @apply rotate-[45deg];
+  }
+
+  .rotate-90 {
+    @apply rotate-[90deg];
+  }
+
+  .rotate-135 {
+    @apply rotate-[135deg];
+  }
+
+  .rotate-180 {
+    @apply rotate-[180deg];
+  }
+
+  .rotate-225 {
+    @apply rotate-[225deg];
+  }
+
+  .rotate-270 {
+    @apply rotate-[270deg];
+  }
+
+  .rotate-315 {
+    @apply rotate-[315deg];
+  }
+
+  .rotate-360 {
+    @apply rotate-[360deg];
+  }
+
+  .-rotate-45 {
+  @apply rotate-[-45deg]
+}
+
+.-rotate-90 {
+  @apply rotate-[-90deg]
+}
+
+.-rotate-135 {
+  @apply rotate-[-135deg]
+}
+
+.-rotate-180 {
+  @apply rotate-[-180deg]
+}
+
+.-rotate-225 {
+  @apply rotate-[-225deg]
+}
+
+.-rotate-270 {
+  @apply rotate-[-270deg]
+}
+
+.-rotate-315 {
+  @apply rotate-[-315deg]
+}
+
+.-rotate-360 {
+  @apply rotate-[-360deg]
+}
+</style>

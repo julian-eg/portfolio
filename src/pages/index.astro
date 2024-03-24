@@ -2,25 +2,16 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import ProjectView from "../components/ProjectView.astro";
 import SkillView from "../components/SkillView.astro";
+import HomeHero from "../components/home/HomeHero.astro"
+import HomeAbout from "../components/home/HomeAbout.astro"
 ---
 
 <MainLayout
   title="Julián Esparza - Web developer"
   desc="Julián Esparza Web Developer"
 >
-  <section class="px-10 flex">
-    <p class="font-bold text-7xl max-w-lg text-gray-50 bg-neko-950">
-      Hola, soy <span class="text-gradient text-transparent"
-        >Julián Esparza</span
-      >
-    </p>
-    <p class="text-xl max-w-xl bg-neko-950">
-      Bienvenido a mi sitio web. Soy un{" "}
-      <span class="text-sky-400">desarrollador web</span> con mas de{" "}
-      <span class="text-sky-400">3 años</span> de experiencia. Me gusta crear cosas
-      únicas.
-    </p>
-  </section>
+  <HomeHero/>
+  <HomeAbout/>
   <section id="projects">
     <div class="flex gap-2.5 items-center">
       <h2 class="uppercase text-3xl px-10 leading-none bg-neko-950">Proyectos</h2>

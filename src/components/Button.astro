@@ -4,15 +4,14 @@ const { as = "Link" || "Button", href, hasIcon } = Astro.props;
 
 {
   as == "Link" ? (
-    <a
-      href={href}
-      class={`${
-        hasIcon ? "flex gap-2" : ""
-      } rounded-full border-gray-700/60 bg-zinc-900/40 border-solid border-[1.5px] transition-all px-5 py-2.5 
-  hover:scale-105 hover:text-white text-gray-300`}
-    >
-      <slot />
-    </a>
+    <div class="relative overflow-visible w-fit group z-10">
+      <a
+        href={href}
+        class={`relative text-sm group-hover:text-white uppercase px-5 py-2.5 border-2 magic-border border-solid border-neko-925 rounded-full`}
+      >
+        <slot />
+      </a>
+    </div>
   ) : (
     <button
       class={`${
@@ -24,3 +23,25 @@ const { as = "Link" || "Button", href, hasIcon } = Astro.props;
     </button>
   )
 }
+
+<style>
+  .magic-border {
+    @apply hover:animate-[magic_4s_linear_infinite] transition-colors ease-in-out;
+  }
+
+  @keyframes magic {
+    0%,
+    100% {
+      @apply border-[#FFC876];
+    }
+    25% {
+      @apply border-[#79FFF7];
+    }
+    50% {
+      @apply border-[#9F53FF];
+    }
+    75% {
+      @apply border-[#FF98E2];
+    }
+  }
+</style>

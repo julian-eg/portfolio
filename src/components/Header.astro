@@ -7,19 +7,19 @@ const { pathname } = Astro.url;
 ---
 
 <header
-  class="h-16 px-10 max-w-5xl text-sm mx-auto flex items-center justify-between"
+  class="h-20 z-50 fixed px-10 text-sm w-full grid grid-cols-4 items-center bg-neko-950/80 border-b backdrop-blur-xl border-neko-900/80"
 >
-  <a class="border-2 px-5 border-neko-600 rounded-full py-2.5" href="/"
-    >julian.eg@outlook.com</a
-  >
+  <div class="">
+    <a class="font-bold" href="/">julian.eg@outlook.com</a>
+  </div>
   <button
     id="menu"
-    class="w-16 flex z-40 items-center justify-center h-16 scale-0 rounded-full fixed top-5 right-5 transition-colors ease-in-out bg-neko-950 border-[2px] border-neko-800/70"
+    class="w-16 md:hidden flex z-40 items-center justify-center h-16 scale-0 rounded-full fixed top-5 right-5 transition-colors ease-in-out bg-neko-950 border-[2px] border-neko-800/70"
   >
     <IconMenu size={30} />
   </button>
-  <nav>
-    <ul class="flex gap-4">
+  <nav class="col-span-2 flex items-center justify-center w-full">
+    <ul class="flex gap-4 uppercase">
       <li><a href="/project">Proyectos</a></li>
       <li><a href="/about">Sobre Mi</a></li>
       <li><a href="/contact">Contacto</a></li>
@@ -109,7 +109,7 @@ const { pathname } = Astro.url;
           menu?.classList.remove("bg-neko-950");
           menu?.classList.remove("border-[2px]");
           content?.classList.remove(
-            "[transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)]"
+            "[transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)]",
           );
           bg?.classList.remove("hidden");
         }, 100);
@@ -122,7 +122,7 @@ const { pathname } = Astro.url;
           document.body.classList.remove("overflow-hidden");
           bg?.classList.add("hidden");
           content?.classList.add(
-            "[transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)]"
+            "[transform:_translate(calc(100%+6vw),0)_rotate(0.001deg)]",
           );
         }, 50);
 

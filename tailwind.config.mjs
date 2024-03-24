@@ -4,33 +4,32 @@ export default {
   theme: {
     extend: {
       minHeight: {
-        "content": "32rem"
+        content: '38rem'
       },
       boxShadow: {
-        "card": "0px 0px 12px 6px rgba(0,0,0,0.45)"
+        card: '0px 0px 12px 6px rgba(0,0,0,0.45)'
       },
       backgroundImage: {
-        "rain": "linear-gradient( 60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0)"
+        rain: 'linear-gradient( 60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0)',
+        conic: 'conic-gradient(from 225deg, #FFC876, #79FFF7, #9F53FF, #FF98E2, #FFC876)'
       },
       colors: {
-        'neko': {
-          '50': '#f5f7fa',
-          '100': '#eaedf4',
-          '200': '#d0d9e7',
-          '300': '#a7b9d2',
-          '400': '#7793b9',
-          '500': '#5676a1',
-          '600': '#435d86',
-          '700': '#374c6d',
-          '800': '#31415b',
-          '900': '#2c384e',
-          '950': '#10141c',
+        neko: {
+          50: '#f6f5fa',
+          100: '#eceaf4',
+          200: '#d4d0e7',
+          300: '#ada7d2',
+          400: '#7f77b9',
+          500: '#6056a1',
+          600: '#4e4386',
+          700: '#40376d',
+          800: '#39315b',
+          900: '#332c4e',
+          925: '#252134',
+          950: '#0e0c15'
         },
-        'kuro': {
-          
-        }
       }
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 }
